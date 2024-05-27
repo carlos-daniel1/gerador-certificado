@@ -19,7 +19,7 @@ for (let index = 2; index < (numeroCertificados + 2); index++) {
   let data = planilha[`F${index}`].v
 
   let text = `Certificamos que o aluno: ${nome}, com registro acadêmico: ${RA} \nconcluiu o curso de ` +
-    `${curso}, com carga horária de ${duracao}, \nna cidade de ${cidade}, data ${data}\n`
+    `${curso}, com carga horária de \n${duracao}, na cidade de ${cidade}, data ${data}\n`
 
   createPDF(nome, text)
 
@@ -43,11 +43,10 @@ async function createPDF(nome, text) {
     x: 50,
     y: height - 14 * fontSize,
     size: fontSize,
-    font: romanFont,
-    color: rgb(0, 0, 0),
+    font: boldFont,
   }
 )
 
-  writeFileSync(nome + ".pdf", await document.save());
+  writeFileSync(nome.toLowerCase() + ".pdf", await document.save());
 }
 
